@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeakCoach · 智能演讲助手 - 让你的演讲更出色</title>
+    
+    
+    
+    <!-- 官网样式 -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- 网站图标 -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" width="28" height="28">
+                    <path d="M3 9v6h4l5 5V4L7 9H3z" fill="#4b7bec"/>
+                    <path d="M16 7c0-1.5-.8-2.8-2-3.4v2.1c.6.4 1 1.1 1 1.9s-.4 1.5-1 1.9v2.1c1.2-.6 2-1.9 2-3.4z" fill="#4b7bec"/>
+                    <path d="M19 7c0-2.6-1.5-4.8-3.6-6v2.1c1.4.9 2.4 2.5 2.4 4.3 0 1.8-1 3.4-2.4 4.3v2.1c2.1-1.2 3.6-3.4 3.6-6z" fill="#4b7bec"/>
+                </svg>
+                <span class="logo-text">SpeakCoach</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#features">功能</a></li>
+                <li><a href="#how-it-works">原理</a></li>
+                <li><a href="#showcase">展示</a></li>
+                <li><a href="#download" class="nav-download">下载</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">让每一次演讲</span>
+                    <br>都更出色
+                </h1>
+                <p class="hero-subtitle">
+                    SpeakCoach 是你的私人演讲教练，实时分析语速、语气词，
+                    提供个性化建议，帮助你提升表达力。
+                </p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                        </svg>
+                        免费下载
+                    </a>
+                    <a href="#showcase" class="btn btn-outline">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M8 5v14l11-7z" fill="currentColor"/>
+                        </svg>
+                        观看演示
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">本地处理</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">语气词识别</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">实时</span>
+                        <span class="stat-label">可视化反馈</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-app-preview">
+                    <img src="images/screenshot-0.png" alt="SpeakCoach 应用预览" class="preview-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特性区域 -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>为什么选择 SpeakCoach</h2>
+                <p>专为演讲者和面试者设计的智能分析工具</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon blue">
+                        <svg viewBox="0 0 24 24" width="32" height="32">
+                            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" fill="currentColor"/>
+                            <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>实时语音分析</h3>
+                    <p>基于 Web Speech API 的实时语音识别，说完即分析，零延迟反馈。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon green">
+                        <svg viewBox="0 0 24 24" width="32" height="32">
+                            <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>多维度分析</h3>
+                    <p>语速、平均语速、语气词统计、时长监控，全方位评估演讲表现。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon purple">
+                        <svg viewBox="0 0 24 24" width="32" height="32">
+                            <path d="M21 6h-2v2h-2V6h-2V4h2V2h2v2h2v2zm-6-4v2h-2V2h2zm0 8h-2v2h2v-2zm2-2h-2v2h2V8zm0-4h-2v2h2V4zM9 2h2v2H9V2zm0 12h2v2H9v-2zM5 2h2v2H5V2zm0 8h2v2H5v-2zm2 4H5v2h2v-2zm10 4h-2v-2h2v2zm-6-2h2v2h-2v-2zm-6 2h2v2H5v-2zm12-4h-2v-2h2v2zm-2-4h2v2h-2v-2z" fill="currentColor"/>
+                            <path d="M2 22h20v-2H2v2z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>可视化图表</h3>
+                    <p>语速趋势图、语气词分布饼图，让数据一目了然。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon orange">
+                        <svg viewBox="0 0 24 24" width="32" height="32">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2z" fill="currentColor"/>
+                            <circle cx="12" cy="10" r="2" fill="white"/>
+                            <circle cx="18" cy="10" r="2" fill="white"/>
+                            <circle cx="6" cy="10" r="2" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3>智能建议</h3>
+                    <p>基于实时数据生成个性化建议，告诉你如何改进。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon red">
+                        <svg viewBox="0 0 24 24" width="32" height="32">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>隐私保护</h3>
+                    <p>所有处理均在本地完成，不上传任何数据，保护你的隐私。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon teal">
+                        <svg viewBox="0 0 24 24" width="32" height="32">
+                            <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>明暗主题</h3>
+                    <p>支持手动切换和跟随系统主题，保护眼睛。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 语速范围说明 -->
+    <section class="speed-range">
+        <div class="container">
+            <div class="speed-range-content">
+                <h2>理想的语速是多少？</h2>
+                <p>研究表明，大多数听众最容易接受的演讲语速在 <strong>100-160字/分钟</strong> 之间。</p>
+                <div class="speed-meter">
+                    <div class="speed-meter-scale">
+                        <div class="speed-label slow">慢速<br><span>&lt;80</span></div>
+                        <div class="speed-label normal">理想<br><span>100-160</span></div>
+                        <div class="speed-label fast">快速<br><span>&gt;180</span></div>
+                    </div>
+                    <div class="speed-meter-bar">
+                        <div class="speed-range-slow" style="width: 25%"></div>
+                        <div class="speed-range-normal" style="width: 30%"></div>
+                        <div class="speed-range-fast" style="width: 25%"></div>
+                    </div>
+                    <div class="speed-examples">
+                        <div class="example-item">
+                            <span class="example-dot slow-dot"></span>
+                            <span class="example-text">教学、培训</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-dot normal-dot"></span>
+                            <span class="example-text">面试、TED演讲</span>
+                        </div>
+                        <div class="example-item">
+                            <span class="example-dot fast-dot"></span>
+                            <span class="example-text">脱口秀、激情演讲</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作原理 -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>工作原理</h2>
+                <p>简单三步，提升你的演讲水平</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>开始练习</h3>
+                        <p>点击"开始练习"，允许麦克风权限，开始演讲。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>实时分析</h3>
+                        <p>系统实时转写你的演讲，分析语速、语气词等指标。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>获取建议</h3>
+                        <p>查看可视化图表和智能建议，持续改进。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 展示区域 -->
+    <section id="showcase" class="showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2>界面展示</h2>
+                <p>简洁优雅的设计，实时反馈你的演讲表现</p>
+            </div>
+            <div class="showcase-tabs">
+                <button class="tab-btn active" data-tab="speed">语速分析</button>
+                <button class="tab-btn" data-tab="filler">语气词统计</button>
+                <button class="tab-btn" data-tab="suggestions">实时建议</button>
+            </div>
+            <div class="showcase-content">
+                <div class="showcase-panel active" id="speed-tab">
+                    <img src="images/screenshot-1.png" alt="语速分析界面" class="showcase-img">
+                    <div class="showcase-desc">
+                        <h3>实时语速监控</h3>
+                        <p>语速趋势图清晰展示你的语速变化，两条绿线标识理想范围（100-160字/分）。数据多时自动添加缩放条，方便查看历史记录。</p>
+                        <ul>
+                            <li>✅ 当前语速实时显示</li>
+                            <li>✅ 平均语速统计</li>
+                            <li>✅ 语速趋势分析</li>
+                            <li>✅ 峰值/谷值标记</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="showcase-panel" id="filler-tab">
+                    <img src="images/screenshot-2.png" alt="语气词统计界面" class="showcase-img">
+                    <div class="showcase-desc">
+                        <h3>语气词识别</h3>
+                        <p>支持10种中文语气词的识别和统计，饼图直观展示分布情况，帮你找出个人口头禅。</p>
+                        <ul>
+                            <li>🔍 嗯、呃、就是、然后、啊</li>
+                            <li>🔍 那个、这个、那个那个</li>
+                            <li>🔍 就是说、这样的话</li>
+                            <li>📊 前5种语气词排名</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="showcase-panel" id="suggestions-tab">
+                    <img src="images/screenshot-3.png" alt="实时建议界面" class="showcase-img">
+                    <div class="showcase-desc">
+                        <h3>智能建议</h3>
+                        <p>基于实时数据生成个性化建议，从语速、语气词、时长等多个维度提供改进方向。</p>
+                        <ul>
+                            <li>💡 语速偏慢/偏快提醒</li>
+                            <li>💡 语气词过多警告</li>
+                            <li>💡 语速趋势分析</li>
+                            <li>💡 适合场景推荐</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section id="download" class="download">
+        <div class="container">
+            <div class="download-card">
+                <div class="download-icon">
+                    <svg viewBox="0 0 24 24" width="64" height="64">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h2>立即下载 SpeakCoach</h2>
+                <p>版本 v1.0 · 完全免费 · 无需安装 · 即下即用</p>
+                <div class="download-info">
+                    <div class="info-item">
+                        <span class="info-label">文件大小</span>
+                        <span class="info-value">159 MB</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">更新日期</span>
+                        <span class="info-value">2026.03.08</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">系统要求</span>
+                        <span class="info-value">Chrome/Edge 80+</span>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-download" download>
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                    </svg>
+                    下载 ZIP 包
+                </a>
+                <p class="download-note">下载后解压，用浏览器打开 index.html 即可使用</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>常见问题</h2>
+                <p>有任何疑问？这里可能有你想要的答案</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>需要联网吗？</h3>
+                    <p>首次使用需要联网加载字体和图表库，之后可以离线使用。语音识别是浏览器内置功能，不需要服务器。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>数据会上传到云端吗？</h3>
+                    <p>不会！所有处理都在本地浏览器完成，麦克风数据永远不会离开你的电脑，完全保护隐私。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>支持哪些浏览器？</h3>
+                    <p>推荐使用 Chrome 80+ 或 Edge 80+，需要浏览器支持 Web Speech API。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>可以识别英文吗？</h3>
+                    <p>目前版本专注于中文演讲分析，后续版本会考虑添加英文支持。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" width="32" height="32">
+                        <path d="M3 9v6h4l5 5V4L7 9H3z" fill="#4b7bec"/>
+                        <path d="M16 7c0-1.5-.8-2.8-2-3.4v2.1c.6.4 1 1.1 1 1.9s-.4 1.5-1 1.9v2.1c1.2-.6 2-1.9 2-3.4z" fill="#4b7bec"/>
+                        <path d="M19 7c0-2.6-1.5-4.8-3.6-6v2.1c1.4.9 2.4 2.5 2.4 4.3 0 1.8-1 3.4-2.4 4.3v2.1c2.1-1.2 3.6-3.4 3.6-6z" fill="#4b7bec"/>
+                    </svg>
+                    <span>SpeakCoach</span>
+                </div>
+                <p class="footer-tagline">让每一次演讲都更出色</p>
+                <div class="footer-links">
+                    <a href="#features">功能</a>
+                    <a href="#how-it-works">原理</a>
+                    <a href="#showcase">展示</a>
+                    <a href="#download">下载</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2026 SpeakCoach. MIT License.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
