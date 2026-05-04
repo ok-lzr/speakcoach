@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="microphone 'self';">
+    <title>SpeakCoach · 智能演讲助手</title>
+    
+    <!-- 禁用右键菜单 -->
+    <script>
+        // 全局禁用右键菜单
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // 禁用开发者工具快捷键
+        document.addEventListener('keydown', function(e) {
+            // 禁用 F12
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+            // 禁用 Ctrl+Shift+I (开发者工具)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+                e.preventDefault();
+                return false;
+            }
+            // 禁用 Ctrl+Shift+J (控制台)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+                e.preventDefault();
+                return false;
+            }
+            // 禁用 Ctrl+Shift+C (元素选择器)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+                e.preventDefault();
+                return false;
+            }
+            // 禁用 Ctrl+U (查看源码)
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+            // 禁用 Ctrl+S (保存)
+            if (e.ctrlKey && (e.key === 'S' || e.key === 's')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        // 禁止拖拽图片
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    </script>
+    
+    <!-- 使用系统字体 -->
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Roboto, Arial, sans-serif;
+        }
+    </style>
+    
+    <!-- Favicon 图标 -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234b7bec'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3z'/%3E%3Cpath d='M16 7c0-1.5-.8-2.8-2-3.4v2.1c.6.4 1 1.1 1 1.9s-.4 1.5-1 1.9v2.1c1.2-.6 2-1.9 2-3.4z'/%3E%3Cpath d='M19 7c0-2.6-1.5-4.8-3.6-6v2.1c1.4.9 2.4 2.5 2.4 4.3 0 1.8-1 3.4-2.4 4.3v2.1c2.1-1.2 3.6-3.4 3.6-6z'/%3E%3C/svg%3E">
+    
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+<body>
+    <!-- 加载指示器 -->
+    <div id="loading-overlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg-secondary, #f9fafb); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease;">
+        <div style="text-align: center;">
+            <div style="width: 40px; height: 40px; border: 3px solid var(--border-light, #edf0f5); border-top-color: var(--accent, #4b7bec); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px;"></div>
+            <div style="color: var(--text-secondary, #5e6f8d); font-size: 14px;">加载中...</div>
+        </div>
+    </div>
+    <style>
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+
+    <div class="app-container">
+        <!-- 左侧主面板 -->
+        <main class="main-panel">
+            <div class="header">
+                <div class="header-left">
+                    <h1>SpeakCoach</h1>
+                    <button class="theme-button" id="theme-btn" title="切换明暗模式">
+                        <svg viewBox="0 0 24 24" width="18" height="18">
+                            <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </button>
+                </div>
+                <span class="badge">实时演讲分析</span>
+            </div>
+            
+            <!-- 转录区域 -->
+            <div class="transcript-container">
+                <div class="transcript-header">
+                    <span class="label">实时转录</span>
+                    <span class="interim-label" id="interim-indicator">就绪</span>
+                </div>
+                <div class="transcript-box" id="transcript-box">
+                    <div class="placeholder" id="placeholder-text">
+                        点击下方按钮开始演讲，我会实时记录你的每一句话
+                    </div>
+                </div>
+            </div>
+
+            <!-- 实时指标卡片 -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">当前语速</div>
+                    <div class="metric-value" id="speed-value">0</div>
+                    <div class="metric-unit">字/分钟</div>
+                    <div class="progress-bar" id="speed-progress">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">平均语速</div>
+                    <div class="metric-value" id="avg-speed-value">0</div>
+                    <div class="metric-unit">字/分钟</div>
+                    <div class="metric-note">整体节奏</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">语气词</div>
+                    <div class="metric-value" id="filler-count">0</div>
+                    <div class="metric-unit">次</div>
+                    <div class="filler-breakdown" id="filler-breakdown">
+                        <span>暂无语气词</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">当前时长</div>
+                    <div class="metric-value" id="duration-value">00:00</div>
+                    <div class="metric-unit">分钟:秒</div>
+                </div>
+            </div>
+
+            <!-- 控制按钮组 -->
+            <div class="controls">
+                <button class="btn btn-primary" id="start-btn">
+                    <svg class="icon" viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.2"/>
+                        <circle cx="12" cy="12" r="6" fill="currentColor"/>
+                    </svg>
+                    开始练习
+                </button>
+                <button class="btn btn-secondary" id="pause-btn" disabled>
+                    <svg class="icon" viewBox="0 0 24 24" width="20" height="20">
+                        <rect x="7" y="6" width="3" height="12" fill="currentColor"/>
+                        <rect x="14" y="6" width="3" height="12" fill="currentColor"/>
+                    </svg>
+                    暂停
+                </button>
+            </div>
+
+            <!-- 状态提示 -->
+            <div class="status-bar">
+                <div class="status-left">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span id="status-text">就绪</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- 右侧分析面板 -->
+        <aside class="analysis-panel">
+            <h3>实时分析</h3>
+            
+            <!-- 语速趋势图 -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <span class="chart-title">语速趋势</span>
+                    <span class="chart-unit">字/分钟 (每句话)</span>
+                </div>
+                <div id="speed-chart" style="width: 100%; height: 160px;"></div>
+            </div>
+
+            <!-- 语气词分布仪表盘 -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <span class="chart-title">语气词分布</span>
+                    <span class="chart-unit">占比</span>
+                </div>
+                <div id="filler-chart" style="width: 100%; height: 140px;"></div>
+            </div>
+
+            <!-- 实时建议 -->
+            <div class="suggestions">
+                <div class="suggestions-header">
+                    <span class="suggestions-title">实时建议</span>
+                </div>
+                <div class="suggestions-content" id="suggestions">
+                    <div class="suggestion-item neutral">👋 点击开始按钮，我会给你反馈</div>
+                </div>
+            </div>
+
+            <!-- 隐私提示 -->
+            <div class="privacy-note">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                所有处理均在本地进行，保护你的隐私
+            </div>
+        </aside>
+    </div>
+
+    <!-- 延迟加载 ECharts -->
+    <script>
+        // 存储 ECharts 加载状态
+        window.echartsLoaded = false;
+        window.echartsCallbacks = [];
+        
+        // 延迟加载 ECharts
+        function loadECharts() {
+            return new Promise((resolve, reject) => {
+                if (window.echarts) {
+                    window.echartsLoaded = true;
+                    resolve(window.echarts);
+                    return;
+                }
+                
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js';
+                script.onload = () => {
+                    window.echartsLoaded = true;
+                    resolve(window.echarts);
+                    // 执行所有等待的回调
+                    window.echartsCallbacks.forEach(cb => cb(window.echarts));
+                    window.echartsCallbacks = [];
+                };
+                script.onerror = reject;
+                document.body.appendChild(script);
+            });
+        }
+        
+        // 等待 ECharts 加载的工具函数
+        function whenEChartsReady(callback) {
+            if (window.echarts) {
+                callback(window.echarts);
+            } else {
+                window.echartsCallbacks.push(callback);
+                if (!window.echartsLoading) {
+                    window.echartsLoading = true;
+                    loadECharts().catch(err => console.error('ECharts 加载失败:', err));
+                }
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+    <script>
+        // 页面加载完成后隐藏加载指示器
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var overlay = document.getElementById('loading-overlay');
+                if (overlay) {
+                    overlay.style.opacity = '0';
+                    setTimeout(function() {
+                        overlay.style.display = 'none';
+                    }, 300);
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>

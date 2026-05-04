@@ -29,7 +29,7 @@
                 <li><a href="#features">功能</a></li>
                 <li><a href="#how-it-works">原理</a></li>
                 <li><a href="#showcase">展示</a></li>
-                <li><a href="#download" class="nav-download">下载</a></li>
+                <li><a href="#download" class="nav-download">在线体验</a></li>
             </ul>
             <button class="nav-toggle" id="navToggle">
                 <span></span>
@@ -54,9 +54,9 @@
                 <div class="hero-buttons">
                     <a href="#download" class="btn btn-primary">
                         <svg viewBox="0 0 24 24" width="20" height="20">
-                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                            <path d="M8 5v14l11-7z" fill="currentColor"/>
                         </svg>
-                        免费下载
+                        免费体验
                     </a>
                     <a href="#showcase" class="btn btn-outline">
                         <svg viewBox="0 0 24 24" width="20" height="20">
@@ -285,21 +285,21 @@
         </div>
     </section>
 
-    <!-- 下载区域 -->
+    <!-- 在线体验区域 -->
     <section id="download" class="download">
         <div class="container">
             <div class="download-card">
                 <div class="download-icon">
                     <svg viewBox="0 0 24 24" width="64" height="64">
-                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
                     </svg>
                 </div>
-                <h2>立即下载 SpeakCoach</h2>
-                <p>版本 v1.0 · 完全免费 · 无需安装 · 即下即用</p>
+                <h2>立即体验 SpeakCoach</h2>
+                <p>在线体验 · 完全免费 · 无需下载 · 立即使用</p>
                 <div class="download-info">
                     <div class="info-item">
-                        <span class="info-label">文件大小</span>
-                        <span class="info-value">159 MB</span>
+                        <span class="info-label">体验方式</span>
+                        <span class="info-value">直接在浏览器中运行</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">更新日期</span>
@@ -310,13 +310,13 @@
                         <span class="info-value">Chrome/Edge 80+</span>
                     </div>
                 </div>
-                <a href="https://github.com/ok-lzr/speakcoach/releases/download/v1.0.0/speakcoach-v1.0-setup.zip" class="btn btn-download" download>
+                <a href="web/index.html" class="btn btn-download">
                     <svg viewBox="0 0 24 24" width="24" height="24">
-                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                        <path d="M8 5v14l11-7z" fill="currentColor"/>
                     </svg>
-                    下载 ZIP 包
+                    立即体验
                 </a>
-                <p class="download-note">下载后解压，用浏览器打开 index.html 即可使用</p>
+                <p class="download-note">点击按钮，立即在浏览器中体验 SpeakCoach 的所有功能</p>
             </div>
         </div>
     </section>
@@ -366,7 +366,7 @@
                     <a href="#features">功能</a>
                     <a href="#how-it-works">原理</a>
                     <a href="#showcase">展示</a>
-                    <a href="#download">下载</a>
+                    <a href="#download">在线体验</a>
                 </div>
                 <div class="footer-copyright">
                     © 2026 SpeakCoach. MIT License.
@@ -376,5 +376,12 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        document.getElementById('navToggle').addEventListener('click', function() {
+            var navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        });
+    </script>
+
 </body>
 </html>
